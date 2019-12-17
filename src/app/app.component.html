@@ -1,0 +1,75 @@
+<nz-layout style="height: 100%;">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
+      <div class="logo">la-manage</div>
+      <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+          <li nz-menu-item routerLink="index" routerLinkActive="ant-menu-item-selected">
+              <span title><i nz-icon nzType="folder"></i><span class="nav-text">
+                      后台首页</span></span>
+          </li>
+          <ng-container *ngFor='let perm of menu'>
+              <ng-container *ngIf='perm.child'>
+                  <li nz-submenu [nzOpen]='true'>
+                      <span title><i nz-icon nzType="folder"></i><span
+                              class="nav-text">{{perm.display_name}}</span></span>
+                      <ul>
+                          <li nz-menu-item *ngFor="let p2 of perm.child" routerLinkActive="ant-menu-item-selected">
+                              <a routerLink="/{{p2.url}}">{{p2.display_name}}</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ng-container>
+              <ng-container *ngIf='!perm.child'>
+                  <li nz-menu-item routerLinkActive="ant-menu-item-selected"><span title><i nz-icon nzType="folder"></i><span class="nav-text"><a
+                                  routerLink="/{{perm.url}}">
+                                  {{perm.display_name}}</a></span></span>
+                  </li>
+              </ng-container>
+          </ng-container>
+      </ul>
+  </nz-sider>
+  <nz-layout>
+      <nz-header style="background: #fff; padding:0; height: 46px; line-height: 46px;">
+          <i class="trigger" nz-icon [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+              (click)="isCollapsed = !isCollapsed"></i>
+          <ul nz-menu [nzMode]="'horizontal'" style="float: right;">
+              <li nz-menu-item><a href=""><i nz-icon nzType="global"></i>前台首页</a></li>
+              <li nz-submenu>
+                  <span title><i nz-icon nzType="setting"></i>{{user?.real_name}}</span>
+                  <ul>
+                      <li nz-menu-item><a>个人资料</a></li>
+                      <li nz-menu-item><a (click)="logout()">退出登录</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </nz-header>
+      <nz-content style="margin:0">
+          <div class="ant-tabs ant-tabs-top ant-tabs-line">
+              <div class="ant-tabs-bar ant-tabs-top-bar ant-tabs-large-bar ng-star-inserted">
+                  <div class="ant-tabs-nav-container">
+                      <div class="ant-tabs-nav-wrap">
+                          <div class="ant-tabs-nav-scroll">
+                              <div class="ant-tabs-nav ant-tabs-nav-animated"
+                                  style="transform: translate3d(0px, 0px, 0px);">
+                                  <div>
+                                      <div *ngFor="let menu of menuList"
+                                          class="ant-tabs-tab ng-star-inserted {{menu.select?'ant-tabs-tab-active':''}}"
+                                          routerLink="{{ menu.path }}" (dblclick)="closeUrl(menu.path,menu.select)">
+                                          {{ menu.title }}
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <nz-card style="margin-top: -17px; height: 100%">
+              <router-outlet></router-outlet>
+          </nz-card>
+      </nz-content>
+      <nz-footer style="text-align: center;">Ant Design ©2019 Implement By Angular</nz-footer>
+  </nz-layout>
+</nz-layout>
+<ng-template #trigger>
+  <i nz-icon nzType="up"></i>
+</ng-template>
