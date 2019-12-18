@@ -8,7 +8,7 @@ export class CanDirective {
         private viewContainer: ViewContainerRef
     ) { }
 
-    @Input() set appCan(param) {
+    @Input() set appCan(param) { // 接收一个数组的参数，第一个是用户拥有的权限，第二个为需要判断的权限
         const perms = param[0];
         const path = param[1];
         if (perms && perms.indexOf(path) > -1) {

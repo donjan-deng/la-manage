@@ -22,8 +22,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.storage.retrieve('token');
-    if (token) {
+    const token = this.storage.retrieve('token'); // token保存在localstorage
+    if (token) { // 如果有token，就添加
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token.access_token}`
@@ -32,10 +32,10 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(req).pipe(
       tap(event => {
-        if (event instanceof HttpResponse) {
+        if (event instanceof HttpResponse) { // 这里是返回，可通过event.body获取返回内容
           // event.body
         }
-      }, error => {
+      }, error => { // 统一处理所有的http错误
         if (error instanceof HttpErrorResponse) {
           if (error.status == 401) {
             this.router.navigate(['/index/login']);

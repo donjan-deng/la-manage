@@ -2,7 +2,7 @@ import { RouteReuseStrategy, ActivatedRouteSnapshot, DetachedRouteHandle } from 
 
 export class ReuseStrategy implements RouteReuseStrategy {
 
-    public static handlers: { [key: string]: DetachedRouteHandle } = {}
+    public static handlers: { [key: string]: DetachedRouteHandle } = {} //储存快照
 
     excludePath=[];//不使用复用策略的path
 
