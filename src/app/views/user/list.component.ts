@@ -138,8 +138,8 @@ export class UserListComponent {
       }
     });
     this.http.put(
-      this.app.config.services.user_center + '/users/roles',
-      { user_id: this.roleForm.get('user_id').value, roles: roles }
+      this.app.config.services.user_center + `/users/${this.roleForm.get('user_id').value}/roles`,
+      { roles: roles }
     ).subscribe((resp: any) => {
       this.roleDialog.visible = false;
       this.roleDialog.loading = false;

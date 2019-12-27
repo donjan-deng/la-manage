@@ -23,7 +23,7 @@
 <nz-dropdown-menu #menu="nzDropdownMenu">
     <ul nz-menu>
         <li *appCan="[app.permsArr,'/user-center/permissions/post']" nz-menu-item (click)="add()">添加节点</li>
-        <li *appCan="[app.permsArr,'/user-center/permissions/put']" nz-menu-item (click)="edit($event)">编辑节点</li>
+        <li *appCan="[app.permsArr,'/user-center/permissions/{id:\\d+}/put']" nz-menu-item (click)="edit($event)">编辑节点</li>
     </ul>
 </nz-dropdown-menu>
 <nz-modal [(nzVisible)]="dialog.visible" nzTitle="节点管理" (nzOnCancel)="close()" (nzOnOk)="save()"

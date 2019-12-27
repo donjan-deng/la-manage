@@ -29,7 +29,7 @@
             <td>{{m.name}}</td>
             <td>{{m.description}}</td>
             <td>
-                <button *appCan="[app.permsArr,'/user-center/roles/put']" nz-button nzType="primary" (click)='edit(m)'><i
+                <button *appCan="[app.permsArr,'/user-center/roles/{id:\\d+}/put']" nz-button nzType="primary" (click)='edit(m)'><i
                         nz-icon nzType="edit" nzTheme="outline"></i>编辑</button>
             </td>
         </tr>

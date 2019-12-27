@@ -70,10 +70,10 @@
             <td>{{m.created_at}}</td>
             <td>{{m.status_text}}</td>
             <td>
-                <button *appCan="[app.permsArr,'/user-center/users/put']" nz-button nzType="primary" (click)='edit(m)'><i nz-icon
+                <button *appCan='[app.permsArr,"/user-center/users/{id:\\d+}/put"]' nz-button nzType="primary" (click)='edit(m)'><i nz-icon
                         nzType="edit" nzTheme="outline"></i>编辑</button>
                 <nz-divider nzType="vertical"></nz-divider>
-                <button *appCan="[app.permsArr,'/user-center/users/roles/put']" nz-button nzType="info" (click)='editRole(m)'>分配角色</button>
+                <button *appCan="[app.permsArr,'/user-center/users/{id:\\d+}/roles/put']" nz-button nzType="info" (click)='editRole(m)'>分配角色</button>
             </td>
         </tr>
     </tbody>
@@ -96,7 +96,7 @@
             <nz-form-label [nzSm]="4">密码</nz-form-label>
             <nz-form-control [nzSm]="20">
                 <nz-input-group>
-                    <input type="text" nz-input placeholder="密码,不修改留空" formControlName="password" />
+                    <input type="password" nz-input placeholder="密码,不修改留空" formControlName="password" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
@@ -104,7 +104,7 @@
             <nz-form-label [nzSm]="4">确认密码</nz-form-label>
             <nz-form-control [nzSm]="20">
                 <nz-input-group>
-                    <input type="text" nz-input placeholder="确认密码,不修改留空" formControlName="confirm_password" />
+                    <input type="password" nz-input placeholder="确认密码,不修改留空" formControlName="confirm_password" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
