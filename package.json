@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~8.0.1",
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng-zorro-antd": "^8.5.2",
     "ngx-webstorage": "^4.0.1",
     "rxjs": "~6.4.0",
